@@ -1,9 +1,11 @@
-import { Inter } from "@next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import { Button } from "@mantine/core";
 
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <div>
+      <h1>For You</h1>
+    </div>
+  );
 };
 
 export default Home;
