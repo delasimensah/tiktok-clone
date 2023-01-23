@@ -1,5 +1,11 @@
+import { Layout } from "@components";
+
 const Following = () => {
-  return <div>Following</div>;
+  return (
+    <Layout>
+      <div>Following</div>
+    </Layout>
+  );
 };
 
 export default Following;

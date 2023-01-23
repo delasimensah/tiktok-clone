@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { TextInput, Button, Menu, Switch } from "@mantine/core";
+import { TextInput, Button, Menu, Switch, ActionIcon } from "@mantine/core";
 import { AiOutlineMore, AiOutlinePlus } from "react-icons/ai";
 import { FiSearch } from "react-icons/fi";
 
@@ -81,7 +81,9 @@ const TopBar = () => {
             }}
           >
             <Menu.Target>
-              <AiOutlineMore size={20} className="text-black" />
+              <ActionIcon>
+                <AiOutlineMore size={20} className="text-black" />
+              </ActionIcon>
             </Menu.Target>
 
             <Menu.Dropdown>
