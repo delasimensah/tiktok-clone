@@ -2,11 +2,8 @@ import type { AppProps } from "next/app";
 import { Figtree } from "@next/font/google";
 import { MantineProvider } from "@mantine/core";
 import { DefaultSeo } from "next-seo";
-
-// my imports
+import { TopBar } from "@components";
 import getTheme from "@lib/mantineTheme";
-
-// global styles
 import "../styles/globals.css";
 
 const figTree = Figtree({
@@ -31,7 +28,11 @@ const App = ({ Component, pageProps }: AppProps) => {
         }
       `}</style>
 
-      <Component {...pageProps} />
+      <TopBar />
+
+      <div className="flex flex-col justify-start min-h-screen">
+        <Component {...pageProps} />
+      </div>
     </MantineProvider>
   );
 };
