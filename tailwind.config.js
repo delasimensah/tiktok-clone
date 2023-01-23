@@ -9,7 +9,8 @@ module.exports = {
     },
   },
   plugins: [],
-  corePlugins: {
-    preflight: false,
-  },
+  // important: true,
+  // corePlugins: {
+  //   preflight: false,
+  // },
 };

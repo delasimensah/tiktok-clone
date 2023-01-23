@@ -17,8 +17,9 @@ const figTree = Figtree({
 
 const App = ({ Component, pageProps }: AppProps) => {
   const theme = getTheme(figTree.style.fontFamily);
+
   return (
-    <MantineProvider withNormalizeCSS>
+    <MantineProvider theme={theme}>
       <DefaultSeo
         title="TikTok Clone"
         description="App build with Next.js and Firebase"
