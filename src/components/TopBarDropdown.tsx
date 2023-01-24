@@ -1,8 +1,22 @@
 import { Menu, Switch, ActionIcon, Avatar } from "@mantine/core";
 import { AiOutlineMore } from "react-icons/ai";
+import {
+  MdOutlineKeyboardAlt,
+  MdOutlineDarkMode,
+  MdPersonOutline,
+  MdOutlineSettings,
+  MdHelpOutline,
+  MdOutlineLogout,
+  MdOutlineLanguage,
+} from "react-icons/md";
+import { useRouter } from "next/router";
+
+const ICON_SIZE = 20;
 
 const TopBarDropdown = () => {
   const user = "Delasi";
+  const username = "delanomad";
+  const { push } = useRouter();
 
   return (
     <Menu
@@ -27,12 +41,31 @@ const TopBarDropdown = () => {
       </Menu.Target>
 
       <Menu.Dropdown>
-        <Menu.Item>View Profile</Menu.Item>
-        <Menu.Item>Settings</Menu.Item>
-        <Menu.Item>English</Menu.Item>
-        <Menu.Item>Feedback and help</Menu.Item>
-        <Menu.Item>Keyboard Shortcuts</Menu.Item>
+        {user && (
+          <>
+            <Menu.Item
+              icon={<MdPersonOutline size={ICON_SIZE} />}
+              onClick={() => push(`/@${username}`)}
+            >
+              View Profile
+            </Menu.Item>
+            <Menu.Item icon={<MdOutlineSettings size={ICON_SIZE} />}>
+              Settings
+            </Menu.Item>
+          </>
+        )}
+
+        <Menu.Item icon={<MdOutlineLanguage size={ICON_SIZE} />}>
+          English
+        </Menu.Item>
+        <Menu.Item icon={<MdHelpOutline size={ICON_SIZE} />}>
+          Feedback and help
+        </Menu.Item>
+        <Menu.Item icon={<MdOutlineKeyboardAlt size={ICON_SIZE} />}>
+          Keyboard Shortcuts
+        </Menu.Item>
         <Menu.Item
+          icon={<MdOutlineDarkMode size={ICON_SIZE} />}
           rightSection={
             <Switch
               size="md"
@@ -45,6 +78,16 @@ const TopBarDropdown = () => {
         >
           Dark Mode
         </Menu.Item>
+
+        {user && (
+          <>
+            {" "}
+            <Menu.Divider />
+            <Menu.Item icon={<MdOutlineLogout size={ICON_SIZE} />}>
+              Logout
+            </Menu.Item>{" "}
+          </>
+        )}
       </Menu.Dropdown>
     </Menu>
   );
