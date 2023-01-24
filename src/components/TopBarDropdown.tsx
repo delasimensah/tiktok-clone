@@ -14,7 +14,7 @@ import { useRouter } from "next/router";
 const ICON_SIZE = 20;
 
 const TopBarDropdown = () => {
-  const user = "Delasi";
+  const user = null;
   const username = "delanomad";
   const { push } = useRouter();
 

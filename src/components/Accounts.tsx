@@ -4,11 +4,11 @@ import { Button } from "@mantine/core";
 
 type AccountsProps = {
   title: string;
+  accounts: number[];
 };
 
-const Accounts: FC<AccountsProps> = ({ title }) => {
+const Accounts: FC<AccountsProps> = ({ title, accounts }) => {
   const [showMore, setShowMore] = useState(false);
-  const accounts = new Array(30).fill(0);
 
   const visibleAccounts = showMore ? [...accounts] : accounts.slice(0, 6);
 

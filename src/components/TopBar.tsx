@@ -11,7 +11,7 @@ import {
 import { useRouter } from "next/router";
 
 const TopBar = () => {
-  const user = "Delasi";
+  const user = null;
   const { push } = useRouter();
 
   const handleLogin = () => {

@@ -7,7 +7,7 @@ type LayoutProps = {
 };
 
 const Layout: FC<LayoutProps> = ({ children }) => {
-  const user = "Delasi";
+  const user = null;
 
   return (
     <div className="mt-[60px] w-screen max-w-[1150px] flex self-center justify-between flex-auto">
@@ -16,7 +16,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
           <NavLinks />
 
           {!user && (
-            <div className="pt-[20px] pb-[24px] px-[10px] space-y-5 ">
+            <div className="pt-[20px] pb-[24px] px-[10px] space-y-3 ">
               <p className="text-[#b0b1b4] font-light">
                 Log in to follow creators, like videos, and view comments.
               </p>
@@ -24,14 +24,24 @@ const Layout: FC<LayoutProps> = ({ children }) => {
                 fullWidth
                 variant="outline"
                 className="border-primary hover:bg-primaryLight text-primary"
-                size="lg"
+                size="md"
               >
                 Log in
               </Button>
             </div>
           )}
 
-          <Accounts title="Suggested accounts" />
+          <Accounts
+            title="Suggested accounts"
+            accounts={new Array(10).fill(0)}
+          />
+
+          {user && (
+            <Accounts
+              title="Following Accounts"
+              accounts={new Array(5).fill(0)}
+            />
+          )}
 
           {/* <div>discover</div> */}
 
