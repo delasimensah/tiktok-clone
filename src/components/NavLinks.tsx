@@ -1,8 +1,8 @@
-import { useState } from "react";
 import Link from "next/link";
 import { NavLink } from "@mantine/core";
 import { RiHome4Fill, RiHome4Line } from "react-icons/ri";
 import { HiUsers, HiOutlineUsers } from "react-icons/hi2";
+import { useRouter } from "next/router";
 
 const links = [
   {
@@ -20,53 +20,33 @@ const links = [
 ];
 
 const NavLinks = () => {
-  const [path, setPath] = useState("/");
+  const { pathname } = useRouter();
 
   return (
     <div className="mb-[10px]">
-      <NavLink
-        component={Link}
-        href="/"
-        label="for you"
-        icon={
-          path === "/" ? (
-            <RiHome4Line size={25} className="text-[#fe2c55]" />
-          ) : (
-            <RiHome4Fill size={25} />
-          )
-        }
-        onClick={() => {
-          setPath("/");
-        }}
-        classNames={{
-          root: `p-[10px]`,
-          label: `capitalize ${
-            path === "/" ? "text-[#fe2c55]" : "text-black"
-          } text-lg font-semibold`,
-        }}
-      />
-
-      <NavLink
-        component={Link}
-        href="/following"
-        label="following"
-        icon={
-          path === "/following" ? (
-            <HiUsers size={25} className="text-[#fe2c55]" />
-          ) : (
-            <HiOutlineUsers size={25} />
-          )
-        }
-        onClick={() => {
-          setPath("/following");
-        }}
-        classNames={{
-          root: `p-[10px]`,
-          label: `capitalize ${
-            path === "/following" ? "text-[#fe2c55]" : "text-black"
-          } text-lg font-semibold`,
-        }}
-      />
+      {links.map((link, idx) => {
+        return (
+          <NavLink
+            key={idx}
+            component={Link}
+            href={link.path}
+            label={link.label}
+            icon={
+              pathname === link.path ? (
+                <link.activeIcon size={25} className="text-primary" />
+              ) : (
+                <link.icon size={25} />
+              )
+            }
+            classNames={{
+              root: `p-[10px]`,
+              label: `capitalize ${
+                pathname === link.path ? "text-primary" : "text-black"
+              } text-lg font-semibold`,
+            }}
+          />
+        );
+      })}
     </div>
   );
 };
