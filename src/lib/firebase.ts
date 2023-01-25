@@ -4,12 +4,12 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCjp5_X_ms4b5ndU0AUyLtF3v_ymxe3oFI",
-  authDomain: "nextfire2-8c0af.firebaseapp.com",
-  projectId: "nextfire2-8c0af",
-  storageBucket: "nextfire2-8c0af.appspot.com",
-  messagingSenderId: "390309881654",
-  appId: "1:390309881654:web:630b18325e18bb9d3bb597",
+  apiKey: "AIzaSyBvmYs9ioQwmR6bl6K9KJFTPIhwYXtlLZs",
+  authDomain: "tiktok-clone-54647.firebaseapp.com",
+  projectId: "tiktok-clone-54647",
+  storageBucket: "tiktok-clone-54647.appspot.com",
+  messagingSenderId: "523990439154",
+  appId: "1:523990439154:web:d85d135a6782cd97e5ec6b",
 };
 
 const app = initializeApp(firebaseConfig);
