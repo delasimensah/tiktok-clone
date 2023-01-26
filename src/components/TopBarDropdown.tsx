@@ -10,11 +10,12 @@ import {
   MdOutlineLanguage,
 } from "react-icons/md";
 import { useRouter } from "next/router";
+import { useAuthUser } from "@lib/hooks";
 
 const ICON_SIZE = 20;
 
 const TopBarDropdown = () => {
-  const user = null;
+  const { user } = useAuthUser();
   const username = "delanomad";
   const { push } = useRouter();
 

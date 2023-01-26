@@ -1,13 +1,15 @@
 import { ReactNode, FC } from "react";
 import { NavLinks, Accounts } from "@components";
 import { Button } from "@mantine/core";
+import { useLoginModal, useAuthUser } from "@lib/hooks";
 
 type LayoutProps = {
   children: ReactNode;
 };
 
 const Layout: FC<LayoutProps> = ({ children }) => {
-  const user = null;
+  const { user } = useAuthUser();
+  const { handleOpen } = useLoginModal();
 
   return (
     <div className="mt-[60px] w-screen max-w-[1150px] flex self-center justify-between flex-auto">
@@ -25,6 +27,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
                 variant="outline"
                 className="border-primary hover:bg-primaryLight text-primary"
                 size="md"
+                onClick={() => handleOpen()}
               >
                 Log in
               </Button>

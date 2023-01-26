@@ -4,6 +4,7 @@ import { MantineProvider } from "@mantine/core";
 import { DefaultSeo } from "next-seo";
 import { TopBar } from "@components";
 import getTheme from "@lib/mantineTheme";
+import Provider from "@lib/contexts/Provider";
 import "../styles/globals.css";
 
 const figTree = Figtree({
@@ -28,11 +29,13 @@ const App = ({ Component, pageProps }: AppProps) => {
         }
       `}</style>
 
-      <TopBar />
+      <Provider>
+        <TopBar />
 
-      <div className="flex flex-col justify-start min-h-screen">
-        <Component {...pageProps} />
-      </div>
+        <div className="flex flex-col justify-start min-h-screen">
+          <Component {...pageProps} />
+        </div>
+      </Provider>
     </MantineProvider>
   );
 };

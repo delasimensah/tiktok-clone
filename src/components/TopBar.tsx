@@ -1,5 +1,6 @@
+import { useState } from "react";
 import Link from "next/link";
-import { TextInput, Button } from "@mantine/core";
+import { TextInput, Button, Modal } from "@mantine/core";
 import { AiOutlineMessage } from "react-icons/ai";
 import { FiSearch } from "react-icons/fi";
 import {
@@ -8,14 +9,16 @@ import {
   UploadButton,
   TopBarIcon,
 } from "@components";
+import { useAuthUser, useLoginModal } from "@lib/hooks";
 import { useRouter } from "next/router";
 
 const TopBar = () => {
-  const user = null;
+  const { user } = useAuthUser();
   const { push } = useRouter();
+  const { open, handleOpen, handleClose } = useLoginModal();
 
   const handleLogin = () => {
-    console.log("login");
+    handleOpen();
   };
 
   return (
@@ -74,6 +77,18 @@ const TopBar = () => {
 
           <TopBarDropdown />
         </div>
+
+        <Modal
+          opened={open}
+          onClose={() => handleClose()}
+          title="Introduce yourself!"
+          centered
+          overlayOpacity={0.4}
+          closeOnClickOutside={false}
+          zIndex={2000}
+        >
+          <div>hello there</div>
+        </Modal>
       </div>
     </div>
   );
