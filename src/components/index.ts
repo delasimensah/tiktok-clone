@@ -7,4 +7,4 @@ export { default as TopBarDropdown } from "./TopBarDropdown";
 export { default as TopBarIcon } from "./TopBarIcon";
 export { default as Notifications } from "./Notifications";
 export { default as UploadButton } from "./UploadButton";
-export { default as AuthModal } from "./AuthModal";
+export { default as AuthModal } from "./authModal/AuthModal";

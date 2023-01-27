@@ -11,6 +11,8 @@ import {
 import { useAuthUser, useLoginModal } from "@lib/hooks";
 import { useRouter } from "next/router";
 
+// todo: make search input text smaller
+
 const TopBar = () => {
   const { user } = useAuthUser();
   const { push } = useRouter();
