@@ -16,10 +16,6 @@ const TopBar = () => {
   const { push } = useRouter();
   const { handleOpen } = useLoginModal();
 
-  const handleLogin = () => {
-    handleOpen();
-  };
-
   return (
     <div className="h-[60px] bg-white w-full fixed top-0 z-[1000] shadow-sm flex justify-around items-center">
       <div className="w-full flex h-full justify-between items-center max-w-[1150px] pl-[20px] pr-[24px]">
@@ -52,7 +48,7 @@ const TopBar = () => {
               <UploadButton />
             </Link>
           ) : (
-            <UploadButton handleLogin={handleLogin} />
+            <UploadButton handleLogin={handleOpen} />
           )}
 
           {user ? (
@@ -67,7 +63,7 @@ const TopBar = () => {
             </>
           ) : (
             <Button
-              onClick={handleLogin}
+              onClick={handleOpen}
               className="bg-primary hover:bg-primaryDark min-w-[100px] min-height-[36px]"
             >
               Log in

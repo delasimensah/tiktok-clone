@@ -28,7 +28,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
                   variant="outline"
                   className="border-primary hover:bg-primaryLight text-primary"
                   size="md"
-                  onClick={() => handleOpen()}
+                  onClick={handleOpen}
                 >
                   Log in
                 </Button>
