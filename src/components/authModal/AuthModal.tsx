@@ -1,10 +1,5 @@
-import { useState } from "react";
 import {
   Modal,
-  Title,
-  Button,
-  Stack,
-  Divider,
   Group,
   CloseButton,
   Center,
@@ -12,18 +7,38 @@ import {
   ActionIcon,
 } from "@mantine/core";
 import { useLoginModal } from "@lib/hooks";
-import { FcGoogle } from "react-icons/fc";
-import { AiOutlineUser } from "react-icons/ai";
 import { HiOutlineChevronLeft } from "react-icons/hi";
+import { useDisclosure } from "@mantine/hooks";
 
 import AuthOptions from "./AuthOptions";
 import AuthForm from "./AuthForm";
 
 const AuthModal = () => {
-  const [isSignUp, setIsSignUp] = useState(false);
-  const [showForm, setShowForm] = useState(false);
+  const [isSignUp, isSignUpHandlers] = useDisclosure(false);
+  const [showForm, showFormHandlers] = useDisclosure(false);
 
   const { handleClose, open } = useLoginModal();
+
+  const toggleSignUp = () => {
+    isSignUpHandlers.toggle();
+    showFormHandlers.close();
+  };
+
+  const closeForm = () => {
+    showFormHandlers.close();
+  };
+
+  const openForm = () => {
+    showFormHandlers.open();
+  };
+
+  const closeModal = () => {
+    handleClose();
+    setTimeout(() => {
+      showFormHandlers.close();
+      isSignUpHandlers.close();
+    }, 0);
+  };
 
   return (
     <Modal
@@ -35,58 +50,50 @@ const AuthModal = () => {
       zIndex={2000}
       padding={0}
       withCloseButton={false}
-      radius="lg"
+      radius="md"
     >
-      {/* close button */}
-      <Group position={showForm ? "apart" : "right"} className="p-4">
-        {showForm && (
-          <ActionIcon
-            onClick={() => setShowForm(false)}
+      <div className="h-[500px] flex flex-col">
+        <Group position={showForm ? "apart" : "right"} className="p-4">
+          {showForm && (
+            <ActionIcon
+              onClick={closeForm}
+              radius="xl"
+              className="text-gray-800 bg-transparent"
+            >
+              <HiOutlineChevronLeft size={25} />
+            </ActionIcon>
+          )}
+
+          <CloseButton
+            size="xl"
+            iconSize={25}
             radius="xl"
-            className="text-gray-800 bg-transparent"
+            className="text-gray-800 bg-gray-100"
+            onClick={closeModal}
+          />
+        </Group>
+
+        <div className="flex-1 px-10">
+          {!showForm ? (
+            <AuthOptions isSignUp={isSignUp} onClick={openForm} />
+          ) : (
+            <AuthForm isSignUp={isSignUp} />
+          )}
+        </div>
+
+        <Center className="py-5 space-x-1 border-t border-t-gray-200">
+          <Text fz="sm">
+            {isSignUp ? "Already have an account?" : "Don't have an account?"}
+          </Text>
+          <Text
+            fz="sm"
+            className="font-medium cursor-pointer text-primary hover:underline"
+            onClick={toggleSignUp}
           >
-            <HiOutlineChevronLeft size={25} />
-          </ActionIcon>
-        )}
-
-        <CloseButton
-          size="xl"
-          iconSize={25}
-          radius="xl"
-          className="text-gray-800 bg-gray-100"
-          onClick={() => {
-            handleClose();
-            setTimeout(() => {
-              setShowForm(false);
-            }, 0);
-          }}
-        />
-      </Group>
-
-      {/* authentication options if show form is true show form else show options */}
-      {!showForm ? (
-        <AuthOptions isSignUp={isSignUp} onClick={() => setShowForm(true)} />
-      ) : (
-        <AuthForm isSignUp={isSignUp} onClick={() => setShowForm(false)} />
-      )}
-
-      <Divider className="border-gray-200" />
-
-      <Center className="py-5 space-x-1">
-        <Text fz="sm">
-          {isSignUp ? "Already have an account?" : "Don't have an account?"}
-        </Text>
-        <Text
-          fz="sm"
-          className="font-medium cursor-pointer text-primary hover:underline"
-          onClick={() => {
-            setIsSignUp((prev) => !prev);
-            setShowForm(false);
-          }}
-        >
-          {isSignUp ? "Log in" : "Sign Up"}
-        </Text>
-      </Center>
+            {isSignUp ? "Log in" : "Sign Up"}
+          </Text>
+        </Center>
+      </div>
     </Modal>
   );
 };
